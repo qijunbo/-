@@ -22,10 +22,18 @@ public class DocumentHelper {
 
 	public static final String ID = "_id";
 
+	private static Gson gson;
+
 	private static final List<?> BSONType = Arrays.asList(Boolean.class,
 			Character.class, Byte.class, Short.class, Integer.class,
 			Long.class, Binary.class, ObjectId.class, Float.class,
 			Double.class, Void.class, String.class, List.class, Date.class);
+
+	public static Document buildDocument(Object pojo) {
+
+		Document doc = Document.parse(gson.toJson(pojo));
+		return doc;
+	}
 
 	public static Document buildDocument(Class<?> template,
 			Map<String, ?> values) {
@@ -91,8 +99,6 @@ public class DocumentHelper {
 	 * @return
 	 */
 	public static <T> T parse(Document doc, Class<T> clazz) {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		Gson gson = gsonBuilder.create();
 		return gson.fromJson(doc.toJson(), clazz);
 	}
 
@@ -133,5 +139,10 @@ public class DocumentHelper {
 		}
 
 		return id;
+	}
+
+	static {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gson = gsonBuilder.create();
 	}
 }

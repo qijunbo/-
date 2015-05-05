@@ -1,13 +1,13 @@
 package com.db.model;
 
-import java.util.Date;
-
 import com.db.crud.anno.Collection;
+import com.db.crud.anno.DateAdapter;
 
-@Collection(name="User.Agenda.Item")
+@Collection(name = "User.Agenda.Item")
 public class Item {
 
-	Date start;
+	@DateAdapter(pattern = "hh:mm")
+	String start;
 	int duration;
 	String speaker;
 	String room;
@@ -16,11 +16,11 @@ public class Item {
 	int breakout;
 	String detail;
 
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 

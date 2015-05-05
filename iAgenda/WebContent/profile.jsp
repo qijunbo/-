@@ -4,12 +4,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>iAgenda</title>
+<title>Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
- 
 <link href="./css/style.css" rel="stylesheet" type="text/css"
 	media="all" />
 </head>
@@ -30,35 +29,15 @@
 						<%@include file="left.jsp"%>
 					</div>
 					<div class="col span_2_of_3">
-						<div class="contact-form">
-							<h3>Create Agenda</h3>
-							<form action="agenda" method="post">
-								<div>
-									<span><label>Title</label></span> <span><input
-										name="title" type="text" value=""></span>
-								</div>
-								<div>
-									<span><label>Date</label></span> <span><input
-										name="date" type="text" value="2015-05-12"></span>
-								</div>
-								<div>
-									<span><label>Detail</label></span> <span><textarea
-											name="detail"> </textarea></span>
-								</div>
-								<div>
-									<span><input type="submit" value="Submit"></span>
-								</div>
-							</form>
-						</div>
-						<c:if test="${not empty user.agendas}">
-							<h3>Agendas Created By ${user.firstname}</h3>
-							<c:forEach items="${user.agendas}" var="e">
-								<p class="top">
-									<strong>${e.title}</strong> <img src="./images/art-pic3.jpg"
-										alt="" /><br>
-										<a href="agenda?title=${e.title}">${e.detail}</a> 
-								</p>
-							</c:forEach>
+						<c:if test="${not empty user}">
+							<h3>${user.firstname}&nbsp;${user.surname}</h3>
+							<p class="top">${user.email} </p>
+							<p class="top">${user.department} </p>
+							<p class="top">${user.address} </p>
+							<p class="top">${user.employeeid} </p>
+							<p class="top">${user.phone} </p>
+							<p class="top">${user.mobile} </p>
+							
 						</c:if>
 					</div>
 				</div>

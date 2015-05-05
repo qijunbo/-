@@ -15,6 +15,8 @@ import com.db.crud.anno.Id;
 import com.db.crud.anno.Required;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 
 public class DocumentHelper {
 
@@ -67,28 +69,20 @@ public class DocumentHelper {
 				value = buildDocument(f.getType(), values);
 			}
 
-			if (value != null) {
+			if (value != null && value.toString().trim().length() > 0) {
 
 				if (f.getType().equals(Date.class)) {
 					DateAdapter adapter = f.getAnnotation(DateAdapter.class);
 					value = DATE_TYPE_ADAPTER.deserializeToDate(
 							value.toString(),
-							adapter == null ? null : adapter.name());
+							adapter == null ? null : adapter.pattern());
 				}
 
 				doc.append(name, id == null ? value : newObjectId(value));
 			}
 
-			if (doc.isEmpty()) {
-				throw new NullDocumentException(template.getSimpleName());
-			}
-
-			// if the POJO has no id , create a MongoDB default id for it.
-			if (idCount == 0 || doc.get(ID) == null) {
-				doc.append(ID, new ObjectId());
-			}
-
 		}
+
 		return doc;
 	}
 
@@ -97,9 +91,23 @@ public class DocumentHelper {
 	 * @param doc
 	 * @param clazz
 	 * @return
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	public static <T> T parse(Document doc, Class<T> clazz) {
-		return gson.fromJson(doc.toJson(), clazz);
+		T t = gson.fromJson(doc.toJson(), clazz);
+
+		// ObjectId objectId = doc.getObjectId("_id");
+		//
+		//
+		//
+		// for (Field f : clazz.getDeclaredFields()) {
+		// Id id = f.getAnnotation(Id.class);
+		// if( id != null){
+		// f.set(t, objectId.toHexString());
+		// }
+		// }
+		return t;
 	}
 
 	private static Object getFieldValue(Field field, Map<String, ?> values) {

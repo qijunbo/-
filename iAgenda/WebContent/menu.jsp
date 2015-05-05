@@ -39,13 +39,10 @@
 			<%
 				} else {
 			%>
-			<li><a class="hsubs" href="#">Agenda</a>
+ 
+			<li><a class="hsubs"  >Me</a>
 				<ul class="subs">
-					<li><a href="agenda.jsp">Add</a></li>
-				</ul></li>
-			<li><a class="hsubs" href="#">Me</a>
-				<ul class="subs">
-					<li><a href="#">MyProfile</a></li>
+					<li><a href="profile.jsp">MyProfile</a></li>
 					<li><a href="logoff">SignOff</a></li>
 				</ul></li>
 			<%

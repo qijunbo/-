@@ -266,6 +266,20 @@ body {
 	overflow: hidden;
 }
 
+.client-gride2 {
+	margin: 25px 35px;
+	cursor: pointer;
+}
+
+.client-gride2:hover {
+	background: #042444;
+}
+
+.col-md-4.client-img {
+	margin: 0;
+	padding: 0;
+}
+
 .nivoSlider img {
 	position: absolute;
 	top: 0px;
@@ -802,6 +816,14 @@ Supports Thumbs: true
 	font-size: 1em;
 	color: rgb(80, 37, 17);
 	text-transform: capitalize;
+	-webkit-appearance: none;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+
+.temp {
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px 2px 10px 10px;
 	-o-border-radius: 2px 2px 10px 10px;
@@ -810,7 +832,6 @@ Supports Thumbs: true
 .link span span:hover,.contact-form input[type="submit"]:hover {
 	background: #F6450E;
 	color: #111;
-
 }
 /***** Media Quries *****/
 @media only screen and (max-width: 1024px) {
@@ -1386,7 +1407,8 @@ Supports Thumbs: true
 	font-family: verdana, arial, helvetica, helve, sans-serif;
 }
 
-.contact-form input[type="text"],.contact-form input[type="password"],.contact-form textarea {
+.contact-form input[type="text"],.contact-form input[type="password"],.contact-form textarea
+	{
 	padding: 8px;
 	display: block;
 	width: 98%;
@@ -1589,10 +1611,10 @@ Supports Thumbs: true
 	font-size: 12em;
 }
 
-.datepicker_container{
+.datepicker_container {
 	display: none;
 }
 
-.datepicker_container_open{
+.datepicker_container_open {
 	display: block;
 }

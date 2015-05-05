@@ -16,6 +16,7 @@ import com.db.model.User;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
 
 /**
  * @author qijunbo
@@ -73,6 +74,12 @@ public class MongoCRUDService {
 		return DocumentHelper.parse(doc, template);
 	}
 
+	public void findOneAndUpdate(Bson filter, Object pojo) {
+		Document doc = DocumentHelper.buildDocument(pojo);
+		Document update = new Document("$set", doc);
+		doc = getCollection(pojo.getClass()).findOneAndUpdate(filter, update);
+	}
+
 	public MongoCollection<Document> getCollection(Class<?> template) {
 
 		Collection coll = template.getAnnotation(Collection.class);
@@ -91,6 +98,10 @@ public class MongoCRUDService {
 	}
 
 	public String insertOne(Class<?> template, Document doc) {
+
+		if (doc.isEmpty()) {
+			throw new NullDocumentException(template.getSimpleName());
+		}
 
 		ObjectId id = (ObjectId) doc.get(DocumentHelper.ID);
 

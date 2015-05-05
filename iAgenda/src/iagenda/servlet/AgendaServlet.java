@@ -1,9 +1,9 @@
 package iagenda.servlet;
 
-import static com.mongodb.client.model.Filters.eq;
 import iagenda.service.AgendaService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bson.conversions.Bson;
+import org.bson.Document;
 
+import com.db.crud.DocumentHelper;
 import com.db.model.Agenda;
 import com.db.model.User;
 
@@ -25,24 +26,26 @@ public class AgendaServlet extends HttpServlet {
 	private static final long serialVersionUID = -8892622115326597538L;
 
 	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
-	}
-
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		User user = (User) req.getSession().getAttribute("user");
 
-		String agendaid = req.getParameter("id");
-		
-		Bson filter = eq("title", "Day1");
+		String title = req.getParameter("title");
+		if (user != null) {
+			List<Agenda> agendas = user.getAgendas();
+			for (Agenda agenda : agendas) {
+				if (agenda.getTitle().equals(title)) {
+					req.getSession().setAttribute("agenda", agenda);
+					break;
+				}
+			}
+			req.getRequestDispatcher("/agenda.jsp").forward(req, resp);
+		} else {
+			
+			resp.sendRedirect("index.jsp");
+			 
+		}
 
-		List<Agenda> agendas = getService().find(Agenda.class, filter);
-		req.getSession().setAttribute("agendas", agendas);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -50,9 +53,17 @@ public class AgendaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			getService().insertOne(Agenda.class, req.getParameterMap());
+			Document doc = DocumentHelper.buildDocument(Agenda.class,
+					req.getParameterMap());
+			Agenda agenda = DocumentHelper.parse(doc, Agenda.class);
+			User user = (User) req.getSession().getAttribute("user");
+			List<Agenda> agendas = user.getAgendas() == null ? new ArrayList<Agenda>()
+					: user.getAgendas();
+			agendas.add(agenda);
+			user.setAgendas(agendas);
+			req.getSession().setAttribute("agenda", agenda);
 
-			req.getRequestDispatcher("/item.jsp").forward(req, resp);
+			req.getRequestDispatcher("/agenda.jsp").forward(req, resp);
 		} catch (Exception e) {
 			throw e;
 			// TODO redirect to error page.

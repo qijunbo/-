@@ -39,8 +39,7 @@ public class LoginServlet extends HttpServlet {
 			User user = getService().findOne (User.class, filter);
 			if (user != null) {
 				req.getSession().setAttribute("user", user);
-				resp.sendRedirect("agenda");
-				//req.getRequestDispatcher("/agenda").forward(req, resp);
+				req.getRequestDispatcher("index.jsp").forward(req, resp);
 			} else {
 				req.getRequestDispatcher("/404.jsp").forward(req, resp);
 			}

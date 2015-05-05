@@ -1,10 +1,11 @@
 package com.db.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.db.crud.anno.Id;
 
-public class User {
+public class User  {
 
 	@Id
 	private String id;
@@ -163,6 +164,17 @@ public class User {
 
 	public List<Agenda> getAgendas() {
 		return agendas;
+	}
+
+	public void addAgenda(Agenda agenda) {
+		if (agendas == null) {
+			agendas = new ArrayList<Agenda>();
+		}
+		agendas.add(agenda);
+	}
+
+	public void removeAgenda(Agenda agenda) {
+		agendas.remove(agenda);
 	}
 
 	public void setAgendas(List<Agenda> agendas) {

@@ -41,15 +41,16 @@ public class Example {
 			System.out.println(gson.toJson(user));
 
 			Document doc = new Document("name", "MongoDB")
-					.append("type", "database")
+					.append("type", new Date())
 					.append("count", 1)
 					.append("info",
 							Arrays.asList(new Document("x", 203).append("y",
 									102)));
 			System.out.println(doc.toJson());
-			
+
 			Object o = JSON.parse(doc.toJson());
 
+			System.out.println(gson.toJson(o));
 			if (gson != null) {
 				return;
 			}

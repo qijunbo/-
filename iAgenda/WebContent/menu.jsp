@@ -21,12 +21,15 @@
 </script>
 <div class="header">
 	<div class="logo">
-		<a href="index.jsp"><img src="images/logo.png" alt="" title="logo"></a>
+		<h1>
+			<a href="index.jsp"><img src="./images/logo.png" /></a>
+		</h1>
 	</div>
-	<div >
-		<span>
-		<c:if test="${not empty user}">Welcome, <c:out value="${user.firstname}"></c:out> </c:if>
-		<c:if test="${empty user}">Welcome !  <c:out value="${user.firstname}"></c:out></c:if>
+	<div class="logo1">
+		<span> <c:if test="${not empty user}">Welcome, <c:out
+					value="${user.firstname}"></c:out>!
+			</c:if> 
+			<c:if test="${empty user}">Welcome to iAgenda! </c:if>
 		</span>
 	</div>
 	<div class="hdr-nav">
@@ -35,19 +38,16 @@
 			<%
 				if (session.getAttribute("user") == null) {
 			%>
-			<li><a class="hsubs" href="user.jsp">SignUp</a></li>
+			<li><a  href="user.jsp">SignUp</a></li>
 			<%
 				} else {
 			%>
- 
-			<li><a class="hsubs"  >Me</a>
-				<ul class="subs">
-					<li><a href="profile.jsp">MyProfile</a></li>
-					<li><a href="logoff">SignOff</a></li>
-				</ul></li>
+			<li><a href="profile.jsp">MyProfile</a></li>
+			<li><a href="logoff">Logout</a></li>
 			<%
 				}
 			%>
+			<li><a  href="dev.jsp">Developer's</a></li>
 			<div id="lavalamp"></div>
 		</ul>
 	</div>

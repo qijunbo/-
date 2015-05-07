@@ -22,6 +22,10 @@
 			//alert($("input[name='save']").val());
 			$("form")[0].submit();
 		});
+
+		$("a[rel='add']").click(function() {
+			$("form")[0].submit();
+		});
 	});
 
 	function doDelete(start, i) {
@@ -30,7 +34,7 @@
 			url : 'item?start=' + start,
 			type : 'delete',
 			success : function(result) {
-				alert('result:' + result);
+
 			}
 		});
 	}
@@ -47,7 +51,6 @@
 			<div class="section group">
 				<div class="cont span_2_of_3">
 					<h3>Agenda</h3>
-					<img src="./images/pic6.jpg" />
 					<c:if test="${empty agenda }">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 							sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -67,8 +70,8 @@
 					<div class="clear"></div>
 					<div id="itemadd" class="contact-form">
 						<form action="item" method="post">
-							<input name="save" value="!" type="hidden" /> <input
-								name="key" value="!" type="hidden" />
+							<input name="save" value="!" type="hidden" /> <input name="key"
+								value="!" type="hidden" />
 							<div>
 								<span><label>Start</label></span> <span><input
 									name="start" type="text" value=""></span>
@@ -94,17 +97,19 @@
 									name="image" type="text" value=""></span>
 							</div>
 							<div>
-								<span><label>Breakout</label></span> <span><input
-									name="breakout" type="text" value=""></span>
+								<span><label>Breakout</label></span><span> <select
+									name="breakout">
+										<option value="1">true</option>
+										<option value="0">false</option>
+								</select></span>
 							</div>
 							<div>
 								<span><label>Detail</label></span> <span><textarea
 										name="detail"> </textarea></span>
 							</div>
-							<div>
-								<span><input type="submit" value="Submit"></span>
-							</div>
+				 
 							<div class="btn">
+								<a class="link" rel="add"><span><span>Add&nbsp;More</span></span></a>
 								<a class="link" rel="save"><span><span>Save
 											&amp; Close</span></span></a>
 							</div>

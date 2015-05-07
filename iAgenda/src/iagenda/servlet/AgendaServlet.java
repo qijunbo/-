@@ -1,5 +1,7 @@
 package iagenda.servlet;
 
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 import iagenda.service.AgendaService;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import com.db.crud.DocumentHelper;
 import com.db.model.Agenda;
@@ -24,6 +27,27 @@ public class AgendaServlet extends HttpServlet {
 	private AgendaService service;
 
 	private static final long serialVersionUID = -8892622115326597538L;
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String title = req.getParameter("title");
+
+		User user = (User) req.getSession().getAttribute("user");
+		Bson filter = and(eq("email", user.getEmail()),
+				eq("password", user.getPassword()));
+
+		List<Agenda> items = user.getAgendas();
+		if (items != null) {
+			for (Agenda i : items) {
+				if (i.getTitle().equals(title)) {
+					items.remove(i);
+					getService().findOneAndUpdate(filter, user);
+					return;
+				}
+			}
+		}
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -41,9 +65,9 @@ public class AgendaServlet extends HttpServlet {
 			}
 			req.getRequestDispatcher("/agenda.jsp").forward(req, resp);
 		} else {
-			
+
 			resp.sendRedirect("index.jsp");
-			 
+
 		}
 
 	}

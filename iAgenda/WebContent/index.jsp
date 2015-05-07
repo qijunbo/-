@@ -9,9 +9,20 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
- 
-<link href="./css/style.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="./css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	function doDelete(title, i) {
+		$(i)[0].remove();
+		$.ajax({
+			url : 'agenda?title=' + title,
+			type : 'delete',
+			success : function(result) {
+
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<div class="header-bg">
@@ -32,6 +43,7 @@
 					<div class="col span_2_of_3">
 						<div class="contact-form">
 							<h3>Create Agenda</h3>
+							<div class="contact-form">
 							<form action="agenda" method="post">
 								<div>
 									<span><label>Title</label></span> <span><input
@@ -49,15 +61,21 @@
 									<span><input type="submit" value="Submit"></span>
 								</div>
 							</form>
+							</div>
 						</div>
 						<c:if test="${not empty user.agendas}">
 							<h3>Agendas Created By ${user.firstname}</h3>
-							<c:forEach items="${user.agendas}" var="e">
-								<p class="top">
-									<strong>${e.title}</strong> <img src="./images/art-pic3.jpg"
-										alt="" /><br>
-										<a href="agenda?title=${e.title}">${e.detail}</a> 
-								</p>
+							<c:forEach items="${user.agendas}" var="e" varStatus="count">
+								<div id="item${count.index}">
+									<p class="top">
+										<strong>${e.title}</strong> <img src="./images/art-pic3.jpg"
+											alt="" /><br> <a href="agenda?title=${e.title}">${e.detail}</a>
+									</p>
+									<div class="btn">
+										<a class="link"
+											onclick="doDelete('${e.title }', '#item${count.index}')"><span><span>Delete</span></span></a>
+									</div>
+								</div>
 							</c:forEach>
 						</c:if>
 					</div>

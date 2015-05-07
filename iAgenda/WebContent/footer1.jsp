@@ -3,6 +3,6 @@
 <div class="footer1">
 	<p class="w3-link">
 		Â© All Rights Reserved | Design by&nbsp; <a
-			href="https://github.com/qijunbo">qijunbo@Github</a>
+			href="junboqi@cn.ibm.com">junboqi@cn.ibm.com</a>
 	</p>
 </div>

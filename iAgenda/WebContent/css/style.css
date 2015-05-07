@@ -1,5 +1,5 @@
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+html,body,div,span,applet,p,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
 	{
 	margin: 0;
 	padding: 0;
@@ -105,7 +105,12 @@ body {
 }
 
 .logo {
-	margin: -1% 0 -4%;
+	margin: 1% 0 -2%;
+	float: left;
+}
+
+.logo1 {
+	margin: 5% 0 0 10%;
 	float: left;
 }
 /*menu*/
@@ -161,7 +166,6 @@ body {
 }
 
 .nav li a {
-	font-family: 'Ubuntu Condensed', sans-serif;
 	color: #999;
 	display: block;
 	float: left;
@@ -1024,7 +1028,7 @@ Supports Thumbs: true
 }
 
 .span_2_of_3 p {
-	color: #666;
+	color: #AAA;
 	line-height: 1.8em;
 }
 
@@ -1055,14 +1059,20 @@ Supports Thumbs: true
 	color: #999;
 	text-transform: capitalize;
 	letter-spacing: 0px;
-	font-family: 'Ubuntu Condensed', sans-serif;
 	font-size: 2.0em;
 	font-weight: normal;
 }
 
+.span_1_of_3 .btn {
+	margin-top: 2%;
+	float: right;
+}
+
 .span_2_of_3 .btn {
 	margin-top: 2%;
+	float: right;
 }
+
 /*footer*/
 .footer-bg {
 	background: url('../images/footer-bg.png');
@@ -1397,6 +1407,12 @@ Supports Thumbs: true
 	margin-top: 3%;
 }
 
+.contact-form-in {
+	position: relative;
+	margin-top: 3%;
+	display: none;
+}
+
 .contact-form div {
 	padding: 5px 0;
 }
@@ -1407,7 +1423,7 @@ Supports Thumbs: true
 	font-family: verdana, arial, helvetica, helve, sans-serif;
 }
 
-.contact-form input[type="text"],.contact-form input[type="password"],.contact-form textarea
+.contact-form input[type="text"],.contact-form input[type="password"],.contact-form textarea,.contact-form select,.contact-form option
 	{
 	padding: 8px;
 	display: block;
@@ -1517,6 +1533,7 @@ Supports Thumbs: true
 	.nav li a {
 		padding: 18px 20px;
 		font-size: 1.4em;
+		font-family: "Oswald", sans-serif;
 	}
 	.span_1_of_4 {
 		float: none;

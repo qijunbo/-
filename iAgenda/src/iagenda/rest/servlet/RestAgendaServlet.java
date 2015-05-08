@@ -27,6 +27,20 @@ public class RestAgendaServlet extends HttpServlet {
 	MongoCRUDService service;
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		Bson filter = and(eq(EMAIL, req.getParameter(EMAIL)),
+				eq(PASSWORD, req.getParameter(PASSWORD)));
+		Document user = getService().getDatabase()
+				.getCollection(User.class.getSimpleName()).find(filter).first();
+		String result = "";
+		if (user != null) {
+			result = user.toJson();
+		}
+		resp.getOutputStream().write(result.getBytes());
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String json = IOUtil.fromStream(req.getInputStream());

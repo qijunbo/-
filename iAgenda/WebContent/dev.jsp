@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='css/style.css' rel='stylesheet' type='text/css'>
 </head>
-<body> 
+<body>
 	<div class="header-bg">
 		<div class="wrap">
 			<%@include file="menu.jsp"%>
@@ -24,7 +24,9 @@
 				</div>
 				<div class="col span_2_of_3">
 					<div class="contact-form">
-					<p>Send requst like the following example with Firfox RestClient you will get a response in JSON format.</p>
+						<h4>Method 1:</h4>
+						<p>Send requst like the following example with Firfox
+							RestClient you will get a response in JSON format.</p>
 						<form action="" method="post">
 							<div>
 								<span><label>METHOD</label></span> <span><input
@@ -38,11 +40,15 @@
 								<span><label>Request Body</label></span> <span><textarea
 										name="request">{"email":"junboqi@cn.ibm.com","password":"123456"}</textarea></span>
 							</div>
-						 
 							<div class="clear"></div>
- 
 						</form>
 					</div>
+					<h4>Method 2:</h4>
+					<p>
+						<a target="_blank"
+							href="http://spruce:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456">
+							http://spruce:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456</a>
+					<p>
 				</div>
 			</div>
 		</div>

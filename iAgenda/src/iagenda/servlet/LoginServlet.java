@@ -35,8 +35,8 @@ public class LoginServlet extends HttpServlet {
 
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
-			Bson filter = and(eq("email", email), eq("password",password));
-			User user = getService().findOne (User.class, filter);
+			Bson filter = and(eq("email", email), eq("password", password));
+			User user = getService().findOne(User.class, filter);
 			if (user != null) {
 				req.getSession().setAttribute("user", user);
 				req.getRequestDispatcher("index.jsp").forward(req, resp);

@@ -4,7 +4,7 @@
 	<div class="section group">
 		<div class="col_1_of_4 span_1_of_4">
 			<h3>TESTIMONIALS</h3>
-			<h4 class="nav1">" Lorem ipsum dolor sit "</h4>
+			Lorem ipsum dolor sit
 			<p class="nav1">Lorem ipsum dolor sit amet, consectetur
 				adipisicing elit, sed do eiusmod tempor consectetur adipisicing
 				elit, sed do eiusmod tempor incididunt.</p>

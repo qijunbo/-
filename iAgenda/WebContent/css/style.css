@@ -489,9 +489,11 @@ Supports Thumbs: true
 .theme-dark .nivo-caption a:hover {
 	color: #fff;
 }
- a:hover {
+
+a:hover {
 	color: #F6450E;
 }
+
 .theme-dark .nivo-controlNav.nivo-thumbs-enabled {
 	width: 80%;
 }
@@ -1425,8 +1427,7 @@ Supports Thumbs: true
 	font-family: verdana, arial, helvetica, helve, sans-serif;
 }
 
-.contact-form input[type="text"],.contact-form input[type="password"],.contact-form textarea,.contact-form select,.contact-form option
-	{
+input[type="text"],input[type="password"],textarea,select,option {
 	padding: 8px;
 	display: block;
 	width: 98%;
@@ -1441,7 +1442,7 @@ Supports Thumbs: true
 	-o-border-radius: 4px;
 }
 
-.contact-form textarea {
+textarea {
 	resize: none;
 	height: 120px;
 }

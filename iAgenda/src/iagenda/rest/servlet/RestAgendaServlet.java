@@ -37,6 +37,7 @@ public class RestAgendaServlet extends HttpServlet {
 		if (user != null) {
 			result = user.toJson();
 		}
+		resp.setHeader("Content-Type", "application/json");
 		resp.getOutputStream().write(result.getBytes());
 	}
 

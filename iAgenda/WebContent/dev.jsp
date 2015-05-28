@@ -6,9 +6,46 @@
 <head>
 <title>Developer's Tool</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='css/style.css' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		//	alert($("a.link"));
+
+		// Preventing a link from being followed
+		$("a.link").click(function(eventObject) {
+
+			$.ajax({
+				
+				//url: "5.10.70.180:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456",
+				url : "rest/agenda?email=junboqi@foxmail.com&password=123456",
+				//type : 'delete',
+				data : {
+					"email" : "junboqi@foxmail.com",
+					"password" : "123456"
+				},
+				success : function(data) {
+
+					var json = JSON.parse(data);
+
+					$("textarea[name='result']").val(data);
+					
+					$("textarea[name='firstname']").val(json.firstname);
+
+				}
+			});
+
+			eventObject.preventDefault();
+			// var elem = $( this );
+			// if ( elem.attr( "href" ).match( /evil/ ) ) {
+
+			//   elem.addClass( "evil" );
+			//}
+		});
+
+	});
+</script>
 </head>
 <body>
 	<div class="header-bg">
@@ -46,9 +83,22 @@
 					<h4>Method 2:</h4>
 					<p>
 						<a target="_blank"
-							href="http://spruce:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456">
-							http://spruce:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456</a>
+							href="http://5.10.70.180:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&password=123456">
+							http://5.10.70.180:1188/iAgenda/rest/agenda?email=junboqi@cn.ibm.com&amp;password=123456</a>
 					<p>
+					<div class="btn">
+						<a class="link"><span><span>Get</span></span></a>
+					</div>
+					<div class="clear"></div>
+					<div>
+						<span><label>Request Body</label></span> <span><textarea
+								name="result"></textarea></span>
+					</div>
+					<div>
+						<span><label>Request Body</label></span> <span><textarea
+								name="firstname"></textarea></span>
+					</div>
+					
 				</div>
 			</div>
 		</div>
